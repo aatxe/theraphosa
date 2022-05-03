@@ -47,9 +47,6 @@ const ERR_SIZE_MISMATCH    = 18n
 
 WabtModule().then(function(wabt) {
   function compile (wat) {
-    outputLog = ''
-    outputBase64 = 'Error occured, base64 output is not available'
-
     var binaryOutput
 
     try {
@@ -71,9 +68,20 @@ WabtModule().then(function(wabt) {
     submitBtn.prop('disabled', true)
     outputArea.hide()
     compiledWat.hide()
+    outputLog = ''
 
     const source = editor.getValue()
     currentWat = Theraphosa.compile(source)
+
+    if (Theraphosa.errorLog() !== "") {
+      outputLog += Theraphosa.errorLog() + '\n'
+      outputArea.addClass('alert-danger').removeClass('alert-success')
+      outputArea.text(outputLog)
+      outputArea.show()
+      submitBtn.prop('disabled', false)
+      return
+    }
+
     compiledWat.text(currentWat)
     compiledWat.show()
     compile(currentWat)
