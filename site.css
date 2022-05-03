@@ -1,0 +1,27 @@
+header {
+    margin-top: 1em;
+}
+
+.ace_editor, .compiled-wat, #output, #compiled-wat {
+    border-radius: 0.3em;
+    font: 16px/normal 'Fira Code',  monospace !important;
+}
+
+.compiled-wat {
+    min-height: 420px;
+    max-height: 630px;
+    height: 100%;
+    overflow-x: wrap;
+    overflow-y: scroll;
+    background: #eee;
+    padding: 1em;
+}
+
+
+.row {
+    margin-bottom: 1em;
+}
+
+#output {
+    padding: 1em;
+}
