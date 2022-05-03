@@ -314,6 +314,7 @@ WabtModule().then(function(wabt) {
     compiledWat.text('')
     outputArea.removeClass('alert-success').removeClass('alert-danger')
     outputArea.hide()
+    submitBtn.prop('disabled', false)
   })
 
   document.getElementById('lists-ex').addEventListener('click', function () {
