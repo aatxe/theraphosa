@@ -86,6 +86,13 @@ WabtModule().then(function(wabt) {
     compiledWat.show()
     compile(currentWat)
 
+    if (outputLog !== "") {
+      outputArea.addClass('alert-danger').removeClass('alert-success')
+      outputArea.text(outputLog)
+      outputArea.show()
+      submitBtn.prop('disabled', false)
+    }
+
     var memory = new WebAssembly.Memory({ initial: 1, maximum: 200 })
 
     function printHelp (snake) {
@@ -297,7 +304,8 @@ WabtModule().then(function(wabt) {
       outputArea.addClass('alert-success').removeClass('alert-danger')
       outputArea.text(outputLog)
       outputArea.show()
-    }).catch(_ => {
+    }).catch(result => {
+      outputLog += result.toString() // wasm runtime error
       outputArea.addClass('alert-danger').removeClass('alert-success')
       outputArea.text(outputLog)
       outputArea.show()
@@ -353,6 +361,12 @@ def reverse_acc(lst, acc):
 
 def reverse(lst):
   reverse_acc(lst, nil)
+
+def map(f, lst):
+  if li == nil:
+    nil
+  else:
+    (f(lst[0]), map(f, lst[1]))
 
 reverse(link(1, link(2, link(3, nil))))`)
     submitBtn.click()
